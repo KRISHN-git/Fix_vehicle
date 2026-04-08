@@ -48,11 +48,29 @@ jwt = JWTManager(app)
 
 # Load ML Models
 # Adjust paths if necessary, assuming running from backend/ directory
-car_model = tf.keras.models.load_model("model/model/car_model_detector.keras")
-severity_model = tf.keras.models.load_model("model/final_vehicle_damage_model.keras")
+# Load ML Models (SAFE PATH FOR RENDER)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-with open("model/car_labels.json", "r") as f:
-    car_labels = json.load(f)
+car_model_path = os.path.join(BASE_DIR, "model", "model", "car_model_detector.keras")
+severity_model_path = os.path.join(BASE_DIR, "model", "final_vehicle_damage_model.keras")
+labels_path = os.path.join(BASE_DIR, "model", "car_labels.json")
+
+print("Loading models...")
+print("Car model path:", car_model_path)
+print("Severity model path:", severity_model_path)
+
+try:
+    car_model = tf.keras.models.load_model(car_model_path)
+    severity_model = tf.keras.models.load_model(severity_model_path)
+
+    with open(labels_path, "r") as f:
+        car_labels = json.load(f)
+
+    print("✅ Models loaded successfully")
+
+except Exception as e:
+    print("❌ Model loading failed:", str(e))
+    raise e
 
 extractor = DamageExtractorAPI()
 
@@ -674,4 +692,5 @@ def analyze_assessment():
 # RUN SERVER
 # ---------------------------------------------------------
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
