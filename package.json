@@ -1,0 +1,11 @@
+{
+  "name": "fix_vehicle",
+  "version": "1.0.0",
+  "description": "A comprehensive AI-powered web application for assessing vehicle damage, estimating repair costs, and providing actionable repair advice.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "krishn",
+  "license": "ISC"
+}

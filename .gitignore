@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+
+# Environment variables
+.env
+
+# Datasets (VERY LARGE)
+data3/
+data3a/
+Stanford_Cars_dataset-main/
+
+# Trained models (VERY LARGE)
+model/
+
+# Uploads & outputs
+static/uploads/
+static/output.jpg
+output.jpg
+
+# OS files
+.DS_Store
+Thumbs.db
