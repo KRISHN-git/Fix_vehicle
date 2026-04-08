@@ -16,9 +16,6 @@ data3/
 data3a/
 Stanford_Cars_dataset-main/
 
-# Trained models (VERY LARGE)
-model/
-
 # Uploads & outputs
 static/uploads/
 static/output.jpg
